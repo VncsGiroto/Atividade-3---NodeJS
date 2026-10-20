@@ -1,34 +1,32 @@
 let professores = [
   {
     id: "1",
-    nome: "Prof. Carlos",
+    nome: "Vinicius Giroto Francischinelli",
     idade: 40,
-    departamento: "Matemática",
+    departamento: "Desenvolvimento",
     turmas: [
-      { codigo: "9A", disciplina: "MAT101", alunos: ["João", "Maria", "Pedro"] },
-      { codigo: "10A", disciplina: "MAT201", alunos: ["Ana", "Luiz"] }
-    ]
+      {
+        codigo: "N2",
+        disciplina: "Api",
+        alunos: ["João", "Maria", "Pedro"],
+      },
+      { codigo: "N3", disciplina: "Web", alunos: ["Ana", "Luiz"] },
+    ],
   },
   {
     id: "2",
-    nome: "Prof. Ana",
+    nome: "Arnaldo Ribeiro",
     idade: 35,
-    departamento: "História",
+    departamento: "Engenharia",
     turmas: [
-      { codigo: "9A", disciplina: "HIS101", alunos: ["João", "Pedro"] },
-      { codigo: "10B", disciplina: "HIS201", alunos: ["Maria", "Carlos", "Luiza"] }
-    ]
+      { codigo: "N1", disciplina: "Calculo", alunos: ["João", "Pedro"] },
+      {
+        codigo: "N2",
+        disciplina: "Fisica",
+        alunos: ["Maria", "Carlos", "Luiza"],
+      },
+    ],
   },
-  {
-    id: "3",
-    nome: "Prof. João",
-    idade: 50,
-    departamento: "Ciências",
-    turmas: [
-      { codigo: "9A", disciplina: "CIE101", alunos: ["João", "Maria"] },
-      { codigo: "9B", disciplina: "CIE101", alunos: ["Pedro", "Luiz"] }
-    ]
-  }
 ];
 
 // Listar todos os professores (GET /professores)
@@ -73,7 +71,8 @@ const atualizarProfessor = (req, res) => {
 
   if (nome !== undefined) professores[index].nome = nome;
   if (idade !== undefined) professores[index].idade = idade;
-  if (departamento !== undefined) professores[index].departamento = departamento;
+  if (departamento !== undefined)
+    professores[index].departamento = departamento;
   if (turmas !== undefined) professores[index].turmas = turmas;
 
   return res.status(200).json(professores[index]);
@@ -93,7 +92,7 @@ const adicionarTurma = (req, res) => {
   const novaTurma = {
     codigo,
     disciplina,
-    alunos: Array.isArray(alunos) ? alunos : []
+    alunos: Array.isArray(alunos) ? alunos : [],
   };
 
   professor.turmas.push(novaTurma);
@@ -106,7 +105,7 @@ const listarPorDepartamento = (req, res) => {
   const { departamento } = req.params;
 
   const resultado = professores.filter(
-    (p) => p.departamento.toLowerCase() === departamento.toLowerCase()
+    (p) => p.departamento.toLowerCase() === departamento.toLowerCase(),
   );
 
   return res.status(200).json(resultado);
@@ -125,7 +124,7 @@ const removerProfessor = (req, res) => {
 
   return res.status(200).json({
     mensagem: "Professor removido com sucesso",
-    professor: professorRemovido
+    professor: professorRemovido,
   });
 };
 
@@ -136,5 +135,5 @@ module.exports = {
   atualizarProfessor,
   adicionarTurma,
   listarPorDepartamento,
-  removerProfessor
+  removerProfessor,
 };
