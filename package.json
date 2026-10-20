@@ -1,0 +1,12 @@
+{
+  "name": "api-professores",
+  "version": "1.0.0",
+  "description": "API de gerenciamento de professores em uma escola utilizando Node.js e Express",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
